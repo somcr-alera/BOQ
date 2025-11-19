@@ -1,0 +1,86 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:name1",
+ "creation": "2025-11-13 15:12:26.104076",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "purchase_boq",
+  "items",
+  "item_total",
+  "services",
+  "services_total",
+  "grand_total"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "purchase_boq",
+   "fieldtype": "Link",
+   "label": "Purchase BOQ",
+   "options": "Purchase BOQ"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Purchase BOQ Item"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Table",
+   "label": "Services",
+   "options": "Purchase Services"
+  },
+  {
+   "fieldname": "item_total",
+   "fieldtype": "Currency",
+   "label": "Item Total"
+  },
+  {
+   "fieldname": "services_total",
+   "fieldtype": "Currency",
+   "label": "Services Total"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-13 15:22:00.286064",
+ "modified_by": "Administrator",
+ "module": "BOQ",
+ "name": "Final BOQ",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
