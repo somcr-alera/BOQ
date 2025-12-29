@@ -4,16 +4,21 @@
  "creation": "2025-11-12 19:11:31.811928",
  "doctype": "DocType",
  "engine": "InnoDB",
- "field_order": [
+"field_order": [
   "item_category",
   "item_code",
   "item_name",
+  "tag_no",
   "qyt",
   "current_stock",
   "uom",
   "rate",
   "discount",
-  "amount"
+  "amount",
+  "moc",
+  "make",
+  "size",
+  "end_connection"
  ],
  "fields": [
   {
@@ -42,6 +47,7 @@
    "label": "Quantity"
   },
   {
+   "fetch_from": "item_code.stock_uom",
    "fieldname": "uom",
    "fieldtype": "Link",
    "label": "UOM",
@@ -66,21 +72,48 @@
   {
    "fieldname": "discount",
    "fieldtype": "Percent",
-   "label": "Discount"
+   "label": "Margin"
+  },
+  {
+   "default": "NA",
+   "fieldname": "tag_no",
+   "fieldtype": "Data",
+   "label": " Tag No."
+  },
+  {
+   "fetch_from": "item_code.custom_moc",
+   "fieldname": "moc",
+   "fieldtype": "Data",
+   "label": "MOC"
+  },
+  {
+   "fetch_from": "item_code.custom_make",
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fetch_from": "item_code.custom_size",
+   "fieldname": "size",
+   "fieldtype": "Data",
+   "label": "Size"
+  },
+  {
+   "fetch_from": "item_code.custom_end_connection",
+   "fieldname": "end_connection",
+   "fieldtype": "Data",
+   "label": "End Connection"
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-13 15:24:56.150925",
+ "modified": "2025-11-21 10:41:16.161488",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Purchase BOQ Item",
  "owner": "Administrator",
  "permissions": [],
- "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

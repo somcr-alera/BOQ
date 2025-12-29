@@ -1,0 +1,189 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{name1}-F",
+ "creation": "2025-11-13 15:12:26.104076",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "purchase_boq",
+  "project",
+  "column_break_jvwa",
+  "opportunity",
+  "opportunity_from",
+  "party",
+  "section_break_jvru",
+  "initial_ref_document_no",
+  "system_name",
+  "column_break_vrdw",
+  "ref_document_no",
+  "engg",
+  "column_break_xnxc",
+  "built_ref_document_no",
+  "certs",
+  "section_break_trzd",
+  "items",
+  "item_total",
+  "services",
+  "services_total",
+  "grand_total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "purchase_boq",
+   "fieldtype": "Link",
+   "label": "Purchase BOQ",
+   "link_filters": "[[\"Purchase BOQ\",\"docstatus\",\"=\",\"1\"]]",
+   "options": "Purchase BOQ"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Purchase BOQ Item"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Table",
+   "label": "Services",
+   "options": "Purchase Services"
+  },
+  {
+   "fieldname": "item_total",
+   "fieldtype": "Currency",
+   "label": "Item Total"
+  },
+  {
+   "fieldname": "services_total",
+   "fieldtype": "Currency",
+   "label": "Services Total"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Final BOQ",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "system_name",
+   "fieldtype": "Data",
+   "label": "System Name"
+  },
+  {
+   "fieldname": "section_break_trzd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_jvru",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vrdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "engg",
+   "fieldtype": "Data",
+   "label": "Engg"
+  },
+  {
+   "fieldname": "column_break_xnxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "certs",
+   "fieldtype": "Data",
+   "label": "Certs"
+  },
+  {
+   "fieldname": "ref_document_no",
+   "fieldtype": "Data",
+   "label": "Ref. Document No."
+  },
+  {
+   "fieldname": "initial_ref_document_no",
+   "fieldtype": "Data",
+   "label": " Initial Ref. Document No."
+  },
+  {
+   "fieldname": "built_ref_document_no",
+   "fieldtype": "Data",
+   "label": "Built Ref. Document No."
+  },
+  {
+   "fieldname": "column_break_jvwa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "opportunity_from",
+   "fieldtype": "Select",
+   "label": "Opportunity From",
+   "options": "\nCustomer\nLead\nProspect"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "options": "opportunity_from"
+  },
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-12-26 12:56:48.629902",
+ "modified_by": "Administrator",
+ "module": "BOQ",
+ "name": "Commercial Offer",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

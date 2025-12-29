@@ -1,26 +1,29 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{sales_boq}-P",
  "creation": "2025-11-12 18:35:22.284220",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "name1",
+  "technical_offer_column",
   "sales_boq",
+  "opportunity",
+  "column_break_hwke",
+  "opportunity_from",
+  "party",
+  "section_break_mwjb",
   "items",
-  "services"
+  "services",
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "name1",
-   "fieldtype": "Data",
-   "label": "Name"
-  },
-  {
    "fieldname": "sales_boq",
    "fieldtype": "Link",
-   "label": "Sales BOQ",
-   "options": "Sales BOQ"
+   "label": "Technical Offer",
+   "link_filters": "[[\"Technical Offer\",\"docstatus\",\"=\",\"1\"]]",
+   "options": "Technical Offer"
   },
   {
    "fieldname": "items",
@@ -33,18 +36,60 @@
    "fieldtype": "Table",
    "label": "Services",
    "options": "Purchase Services"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase BOQ",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  },
+  {
+   "fieldname": "column_break_hwke",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mwjb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "opportunity_from",
+   "fieldtype": "Select",
+   "label": "Opportunity From",
+   "options": "\nCustomer\nLead\nProspect"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "options": "opportunity_from"
+  },
+  {
+   "fieldname": "technical_offer_column",
+   "fieldtype": "Column Break"
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-11-13 11:34:14.205451",
+ "modified": "2025-12-29 11:26:28.767013",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Purchase BOQ",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -53,12 +98,13 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
  "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

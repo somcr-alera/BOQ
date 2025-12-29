@@ -1,7 +1,7 @@
 // Copyright (c) 2025, Som and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Final BOQ", {
+// frappe.ui.form.on("Technical Offer", {
 // 	refresh(frm) {
 
 // 	},

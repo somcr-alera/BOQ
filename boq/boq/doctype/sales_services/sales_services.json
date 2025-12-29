@@ -15,8 +15,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Service Code",
-   "options": "Services",
-   "unique": 1
+   "options": "Services"
   },
   {
    "fetch_from": "service_code.service_name",
@@ -31,18 +30,15 @@
    "label": "Description"
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-13 11:44:24.684311",
+ "modified": "2025-11-21 09:59:49.682641",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Sales Services",
  "owner": "Administrator",
  "permissions": [],
- "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

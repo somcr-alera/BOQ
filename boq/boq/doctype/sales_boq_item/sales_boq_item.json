@@ -5,19 +5,21 @@
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
- "field_order": [
-  "item_category",
+"field_order": [
   "item_code",
+  "item_category",
   "item_name",
   "qyt",
   "uom"
  ],
  "fields": [
   {
+   "fetch_from": "item_code.item_group",
    "fieldname": "item_category",
    "fieldtype": "Link",
    "label": "Item Category",
-   "options": "Item Group"
+   "options": "Item Group",
+   "read_only": 1
   },
   {
    "fieldname": "item_code",
@@ -38,6 +40,7 @@
    "label": "Quantity"
   },
   {
+   "fetch_from": "item_code.stock_uom",
    "fieldname": "uom",
    "fieldtype": "Link",
    "label": "UOM",
@@ -47,13 +50,12 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-13 11:46:11.370463",
+ "modified": "2025-11-20 13:33:38.553726",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Sales BOQ Item",
  "owner": "Administrator",
  "permissions": [],
- "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

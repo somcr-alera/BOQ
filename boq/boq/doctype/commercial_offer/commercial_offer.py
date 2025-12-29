@@ -1,17 +1,18 @@
-# purchase_boq.py (Server-side)
+# Copyright (c) 2025, Som and contributors
+# For license information, please see license.txts
 
 import frappe
 from frappe import _
 from frappe.model.document import Document
 
-class PurchaseBOQ(Document):
+class CommercialOffer(Document):
     def autoname(self):
-        """Generate name from Sales BOQ by replacing -S with -P"""
-        if self.sales_boq:
-            # Replace -S with -P in the sales BOQ name
-            self.name = f"{self.sales_boq}-P"
+        """Generate name from Purchase BOQ by replacing -P with -F"""
+        if self.purchase_boq:
+            # Replace -P with -F in the purchase BOQ name
+            self.name = self.purchase_boq.replace("-P", "-F")
         else:
-            frappe.throw(_("Technical Offer is required to generate Purchase BOQ name"))
+            frappe.throw(_("Purchase BOQ is required to generate Commercial Offer name"))
     
     def validate(self):
         """Calculate totals on save"""
@@ -65,40 +66,31 @@ class PurchaseBOQ(Document):
 
 
 @frappe.whitelist()
-def get_sales_boq_data(sales_boq):
-    """Fetch Sales BOQ data with stock and rate information"""
-    if not sales_boq:
+def get_purchase_boq_data(purchase_boq):
+    """Fetch Purchase BOQ data with stock information"""
+    if not purchase_boq:
         return None
     
-    doc = frappe.get_doc("Technical Offer", sales_boq)
+    doc = frappe.get_doc("Purchase BOQ", purchase_boq)
     
     items = []
     services = []
     
-    # Process items with stock data and rates
+    # Process items with stock data
     for src_item in doc.items or []:
         item = {
-            "item_category": src_item.item_category,
             "item_code": src_item.item_code,
             "item_name": src_item.item_name,
             "qyt": src_item.qyt or 0,
-            "uom": src_item.uom,
-            "discount": 0
+            "rate": src_item.rate or 0,
+            "discount": 0,
+            "amount": (src_item.qyt or 0) * (src_item.rate or 0)
         }
         
-        # Get standard rate from Item master
+        # Get stock quantity
         if src_item.item_code:
-            rate = get_item_rate(src_item.item_code)
-            item["rate"] = rate
-            item["amount"] = (src_item.qyt or 0) * rate
-            
-            # Get stock quantity
             stock_qty = get_item_stock(src_item.item_code)
             item["current_stock"] = stock_qty
-        else:
-            item["rate"] = 0
-            item["amount"] = 0
-            item["current_stock"] = 0
         
         items.append(item)
     
@@ -107,7 +99,10 @@ def get_sales_boq_data(sales_boq):
         service = {
             "service_code": src_service.service_code,
             "service_name": src_service.service_name,
-            "description": src_service.description
+            "description": src_service.description,
+            "service_cost": src_service.service_cost or 0,
+            "discount": 0,
+            "amount": src_service.service_cost or 0
         }
         services.append(service)
     
@@ -118,12 +113,6 @@ def get_sales_boq_data(sales_boq):
         "items": items,
         "services": services
     }
-
-
-def get_item_rate(item_code):
-    """Get standard rate from Item master"""
-    item = frappe.get_value("Item", item_code, "standard_rate")
-    return item or 0
 
 
 def get_item_stock(item_code):
@@ -161,18 +150,3 @@ def validate_stock_availability(doc, method=None):
             message += f"\n• {item['item_name']}: Required {item['required']}, Available {item['available']}"
         
         frappe.msgprint(message, indicator="orange", title=_("Low Stock Warning"))
-
-
-@frappe.whitelist()
-def check_final_boq_exists(purchase_boq):
-    """Check if Final BOQ already exists for this Purchase BOQ"""
-    existing = frappe.get_all(
-        "Commercial Offer",
-        filters={"purchase_boq": purchase_boq},
-        fields=["name"],
-        limit=1
-    )
-    
-    if existing:
-        return {"exists": True, "name": existing[0].name}
-    return {"exists": False}
