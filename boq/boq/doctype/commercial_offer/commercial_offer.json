@@ -9,10 +9,17 @@
   "name1",
   "purchase_boq",
   "project",
+  "customer_link",
   "column_break_jvwa",
   "opportunity",
   "opportunity_from",
   "party",
+  "section_break_aqxe",
+  "revision",
+  "is_latest",
+  "column_break_dbpd",
+  "previous_version",
+  "base_document",
   "section_break_jvru",
   "initial_ref_document_no",
   "system_name",
@@ -77,7 +84,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Final BOQ",
+   "options": "Commercial Offer",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -155,12 +162,53 @@
    "fieldtype": "Link",
    "label": "Opportunity",
    "options": "Opportunity"
+  },
+  {
+   "fieldname": "customer_link",
+   "fieldtype": "Link",
+   "label": "Customer Link",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "section_break_aqxe",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "revision",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "revision"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_latest",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "is_latest"
+  },
+  {
+   "fieldname": "column_break_dbpd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "previous_version",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "previous_version",
+   "options": "Commercial Offer"
+  },
+  {
+   "fieldname": "base_document",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "base_document",
+   "options": "Commercial Offer"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-12-26 12:56:48.629902",
+ "modified": "2026-01-05 13:09:06.760830",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Commercial Offer",
@@ -178,6 +226,19 @@
    "report": 1,
    "role": "System Manager",
    "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
    "share": 1,
    "submit": 1,
    "write": 1

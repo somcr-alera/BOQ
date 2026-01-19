@@ -12,6 +12,12 @@
   "column_break_hwke",
   "opportunity_from",
   "party",
+  "section_break_loip",
+  "revision",
+  "is_latest",
+  "column_break_odxd",
+  "previous_version",
+  "base_document",
   "section_break_mwjb",
   "items",
   "services",
@@ -76,12 +82,47 @@
   {
    "fieldname": "technical_offer_column",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_loip",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "revision",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "revision"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_latest",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "is_latest"
+  },
+  {
+   "fieldname": "column_break_odxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "previous_version",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "previous_version",
+   "options": "Purchase BOQ"
+  },
+  {
+   "fieldname": "base_document",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "base_document",
+   "options": "Purchase BOQ"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-12-29 11:26:28.767013",
+ "modified": "2026-01-05 12:54:44.953948",
  "modified_by": "Administrator",
  "module": "BOQ",
  "name": "Purchase BOQ",
@@ -104,7 +145,6 @@
    "write": 1
   }
  ],
- "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

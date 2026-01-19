@@ -6,12 +6,58 @@ from frappe.model.document import Document
 
 class PurchaseBOQ(Document):
     def autoname(self):
-        """Generate name from Sales BOQ by replacing -S with -P"""
-        if self.sales_boq:
-            # Replace -S with -P in the sales BOQ name
-            self.name = f"{self.sales_boq}-P"
-        else:
-            frappe.throw(_("Technical Offer is required to generate Purchase BOQ name"))
+        if not self.sales_boq:
+            frappe.throw("Technical Offer is required to name Purchase BOQ")
+
+        # Base name for Purchase BOQ
+        base = f"{self.sales_boq}-PB"
+
+        # ------------------------------------------------
+        # CASE 1: NEW BASE DOCUMENT (REVISION 0)
+        # ------------------------------------------------
+        if not self.base_document:
+            self.name = base
+            self.base_document = base
+            self.revision = 0
+            self.previous_version = None
+            self.is_latest = 1
+            return
+
+        # ------------------------------------------------
+        # CASE 2: CREATE REVISION (R1, R2, ...)
+        # ------------------------------------------------
+        max_revision = frappe.db.get_value(
+            self.doctype,
+            {"base_document": self.base_document},
+            "MAX(revision)"
+        ) or 0
+
+        next_revision = max_revision + 1
+
+        self.name = f"{self.base_document}-R{next_revision}"
+        self.revision = next_revision
+        self.is_latest = 1
+
+        self.previous_version = frappe.db.get_value(
+            self.doctype,
+            {"base_document": self.base_document, "revision": max_revision},
+            "name"
+        )
+
+        frappe.db.set_value(
+            self.doctype,
+            {"base_document": self.base_document},
+            "is_latest",
+            0,
+            update_modified=False
+        )
+    # def autoname(self):
+    #     """Generate name from Sales BOQ by replacing -S with -P"""
+    #     if self.sales_boq:
+    #         # Replace -S with -P in the sales BOQ name
+    #         self.name = f"{self.sales_boq}-P"
+    #     else:
+    #         frappe.throw(_("Technical Offer is required to generate Purchase BOQ name"))
     
     def validate(self):
         """Calculate totals on save"""
