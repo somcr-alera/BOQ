@@ -26,7 +26,8 @@ fixtures = [
                 "Opportunity",
                 "Technical Offer",
                 "Commercial Offer",
-                "Purchase BOQ"
+                "Purchase BOQ",
+                "Project"
             ]]
         ]
     }
